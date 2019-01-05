@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
@@ -13,20 +14,31 @@ import { HomeComponent } from './_components/home/home.component';
 import { AlertComponent } from './_components/alert/alert.component';
 import { UserService } from './_services';
 import { RegisterComponent } from './_components/register/register.component';
-
+import {MatToolbarModule,MatMenuModule ,MatButtonModule, MatSidenavModule, MatIconModule, MatListModule,} from '@angular/material';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 @NgModule({
     imports: [
         BrowserModule,
         ReactiveFormsModule,
         HttpClientModule,
-        AppRoutingModule
+        AppRoutingModule,
+        BrowserAnimationsModule,
+        MatToolbarModule,
+        MatSidenavModule,
+        MatIconModule,
+        MatButtonModule,
+        MatButtonModule,
+        MatMenuModule,
+        MatListModule,
+        
     ],
     declarations: [
         AppComponent,
         LoginComponent,
         HomeComponent,
         AlertComponent,
-        RegisterComponent
+        RegisterComponent,
+        
     ],
     providers: [
       UserService,
