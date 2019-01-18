@@ -1,43 +1,59 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { AppComponent } from './app.component';
 
 import {  ErrorInterceptor } from './_helpers/error.interceptor';
 import { JwtInterceptor } from './_helpers/jwt.interceptor';
-import { LoginComponent } from './_components/login';
-import { HomeComponent } from './_components/home/home.component';
-import { AlertComponent } from './_components/alert/alert.component';
 import { UserService } from './_services';
-import { RegisterComponent } from './_components/register/register.component';
-import {MatToolbarModule,MatMenuModule ,MatButtonModule, MatSidenavModule, MatIconModule, MatListModule,} from '@angular/material';
+import {MatToolbarModule,MatMenuModule ,
+    MatButtonModule,MatInputModule,
+     MatSidenavModule, 
+     MatSelectModule,
+    MatIconModule,MatFormFieldModule,MatCardModule,MatListModule, MatProgressBarModule} from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { LoginComponent } from './_components/userComponent/login';
+import { HomeComponent } from './_components/homeComponent';
+
+import { RegisterComponent } from './_components/userComponent/register';
+import { NavbarComponent } from './_components/navbarComponent/navbar.component';
+import { ProfileComponent } from './_components/userComponent/profile';
+import { AlertComponent } from './_components/alertComponent/alert.component';
 @NgModule({
     imports: [
         BrowserModule,
+        FormsModule,
         ReactiveFormsModule,
         HttpClientModule,
         AppRoutingModule,
+        FlexLayoutModule,
         BrowserAnimationsModule,
         MatToolbarModule,
         MatSidenavModule,
         MatIconModule,
         MatButtonModule,
-        MatButtonModule,
+        
+        MatCardModule,
         MatMenuModule,
         MatListModule,
-        
+        MatFormFieldModule,
+        MatInputModule,
+        MatSelectModule,
+        MatProgressBarModule
     ],
     declarations: [
         AppComponent,
+        ProfileComponent,
         LoginComponent,
         HomeComponent,
         AlertComponent,
         RegisterComponent,
+        NavbarComponent,
         
     ],
     providers: [

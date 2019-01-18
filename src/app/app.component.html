@@ -1,12 +1,15 @@
-<mat-toolbar color="primary">
-  <span>My Application</span>
-</mat-toolbar>
-<div class="jumbotron">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-6 offset-md-3">
-                <router-outlet></router-outlet>
-            </div>
-        </div>
-    </div>
+
+
+  <app-navbar></app-navbar>
+  
+  <alert></alert>
+  
+<div fxLayout="row" fxLayout.xs="column" 
+fxLayoutWrap fxLayoutGap="10%" fxLayoutAlign="space-around center">
+<div fxflex>
+    <router-outlet ></router-outlet>
+
 </div>
+ 
+  
+  </div>

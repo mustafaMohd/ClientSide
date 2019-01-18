@@ -8,7 +8,12 @@ export class UserService {
      apiUrl: String = 'http://localhost:3000';
 
     constructor(private http: HttpClient) { }
-
+ findByEmail(email:String){
+     return  this.http.get<User[]>(`${this.apiUrl}/users/${email}`);
+ }
+//  isloggedIn(){
+//      return this.
+//  }
     getAll() {
         return this.http.get<User[]>(`${this.apiUrl}/users`);
     }

@@ -6,7 +6,9 @@ import { map } from 'rxjs/operators';
 import { User } from '../_models/user';
 
 @Injectable({ providedIn: 'root' })
-export class AuthenticationService {
+export class AuthenticationService {    
+// public isloggedIn:boolean=false;
+
     private currentUserSubject: BehaviorSubject<User>;
     public currentUser: Observable<User>;
 
@@ -20,9 +22,9 @@ export class AuthenticationService {
     }
 
     login(email: string, password: string) {
-        return this.http.post<any>(`http://localhost:3000/users//users/authenticate`, { email, password })
+        return this.http.post<any>(`http://localhost:3000/users/authenticate`, { email, password })
             .pipe(map(user => {
-                // login successful if there's a jwt token in the response
+                // login successful if there's a jwt token in the response http://localhost:3000
                 if (user && user.token) {
                     // store user details and jwt token in local storage to keep user logged in between page refreshes
                     localStorage.setItem('currentUser', JSON.stringify(user));

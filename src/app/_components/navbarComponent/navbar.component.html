@@ -1,0 +1,22 @@
+<mat-toolbar  color="primary">
+  
+     <a mat-button text-center routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+        <mat-icon class="example-icon">home</mat-icon>&nbsp; Home
+      </a>
+        
+    <span class="example-fill-remaining-space"></span>
+    
+    <div *ngIf="currentUser">
+        <button mat-stroked-button (click)="onLogout()">Logout</button>
+        &nbsp;
+        <a mat-raised-button color="primary" routerLink="/profile" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Profile</a>
+      </div>
+    
+      <div *ngIf="!currentUser">
+        <a mat-stroked-button color="accent" routerLink="/register" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Register</a>
+        &nbsp;
+        <a mat-raised-button color="primary" routerLink="/login" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Sign
+          in</a>
+      </div>
+    
+  </mat-toolbar>
