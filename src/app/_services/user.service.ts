@@ -22,7 +22,7 @@ export class UserService {
     }
 
     register(user: User) {
-        return this.http.post(`${this.apiUrl}/users/register`, user);
+        return this.http.post(`${this.apiUrl}/auth/register`, user);
     }
 
     update(user: User) {
