@@ -63,6 +63,8 @@ export class RegisterComponent implements OnInit {
         
         },{validator:this.passwordValidator}
         );
+    
+    
     }
     matcher = new MyErrorStateMatcher()
     // parentErrorStateMatcher = new ParentErrorStateMatcher();
@@ -84,12 +86,13 @@ export class RegisterComponent implements OnInit {
         this.loading = true;
 
         console.log(this.registerForm.value)
-        this.userService.register(this.registerForm.value)
+       
+        this.authenticationService.register(this.email.value, this.password.value)
             .pipe(first())
             .subscribe(
                 data => {
                     this.alertService.success('Registration successful', true);
-                    this.router.navigate(['/login']);
+                    this.router.navigate(['/']);
                 },
                 error => {
                     this.alertService.error(error);

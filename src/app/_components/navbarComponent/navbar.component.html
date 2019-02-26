@@ -9,13 +9,13 @@
     <div *ngIf="currentUser">
         <button mat-stroked-button (click)="onLogout()">Logout</button>
         &nbsp;
-        <a mat-raised-button color="primary" routerLink="/profile" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Profile</a>
+        <a mat-button  routerLink="/profile" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Profile</a>
       </div>
     
       <div *ngIf="!currentUser">
-        <a mat-stroked-button color="accent" routerLink="/register" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Register</a>
+        <a mat-button color='accent'  routerLink="/register" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Register</a>
         &nbsp;
-        <a mat-raised-button color="primary" routerLink="/login" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Sign
+        <a mat-button  routerLink="/login" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Sign
           in</a>
       </div>
     

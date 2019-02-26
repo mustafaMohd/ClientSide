@@ -10,7 +10,7 @@ import { AuthenticationService, UserService } from '../../../_services';
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.css']
 })
-export class ProfileComponent   {
+export class ProfileComponent implements OnInit,OnDestroy  {
   
   currentUser: User;
   currentUserSubscription: Subscription;
@@ -20,23 +20,25 @@ export class ProfileComponent   {
   constructor( private authenticationService: AuthenticationService,
    ) {
      
+   
+
+    }
+    
+  ngOnInit() {
     this.currentUserSubscription = this.authenticationService.currentUser.subscribe(
       user => {
         this.currentUser = user;
     })
 
+  
+    // this.loadAllUsers();
 
-    }
-    
-  // ngOnInit() {
-  //   // this.loadAllUsers();
+  }
 
-  // }
-
-//   ngOnDestroy() {
-//     // unsubscribe to ensure no memory leaks
-//     this.currentUserSubscription.unsubscribe();
-// }
+  ngOnDestroy() {
+    // unsubscribe to ensure no memory leaks
+    this.currentUserSubscription.unsubscribe();
+}
 // deleteUser(id: number) {
 //   this.userService.delete(id).pipe(first()).subscribe(() => {
 //       this.loadAllUsers( );

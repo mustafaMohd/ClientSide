@@ -2,7 +2,9 @@ import { Component, Input, OnInit, OnDestroy } from '@angular/core';
 import { User } from 'src/app/_models';
 import { AuthenticationService } from './../../_services/authentication.service';
 import { Subscription } from 'rxjs';
+import { Router } from '@angular/router';
 // import { flattenStyles } from '@angular/platform-browser/src/dom/dom_renderer';
+import { AlertService } from './../../_services/alert.service';
 
 @Component({
   selector: 'app-navbar',
@@ -16,7 +18,8 @@ export class NavbarComponent implements OnInit,OnDestroy {
   currentUserSubscription: Subscription;
 
 
-  constructor(private authenticationService: AuthenticationService) {
+  constructor(private authenticationService: AuthenticationService,
+    private router: Router,private AlertService:AlertService) {
    
     this.currentUserSubscription = this.authenticationService.currentUser.subscribe(
       user => {
@@ -28,6 +31,9 @@ export class NavbarComponent implements OnInit,OnDestroy {
 
   onLogout() {
     this.authenticationService.logout();
+    this.router.navigate(['/']);
+    this.AlertService.clear();
+                
 
   
   }
