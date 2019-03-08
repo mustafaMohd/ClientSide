@@ -38,8 +38,9 @@ export class ProfileComponent implements OnInit,OnDestroy  {
   ngOnDestroy() {
     // unsubscribe to ensure no memory leaks
     this.currentUserSubscription.unsubscribe();
-}
-// deleteUser(id: number) {
+  }
+
+  // deleteUser(id: number) {
 //   this.userService.delete(id).pipe(first()).subscribe(() => {
 //       this.loadAllUsers( );
 //   });

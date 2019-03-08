@@ -44,12 +44,13 @@
   <button color="primary" class="full-width"
    type="submit" mat-raised-button color="primary" [disabled]="loading">Login</button>
 </div>
-<div class="example-button-row" >
- 
-  </div>
-   <div class="example-button-row">
 
-  <a  mat-button color="primary" routerLink="/register">  Register to become a member! !</a>
+   <div class="example-button-row">
+    <button color="primary" (click)="facebookLogin()">Login with Facebook</button>
+  <a mat-button color="primary" routerLink="/register">  Register to become a member! !</a>
+  <button color="primary" (click)="googleLogin()">Login with google</button>
+  
+
 </div>
 
 

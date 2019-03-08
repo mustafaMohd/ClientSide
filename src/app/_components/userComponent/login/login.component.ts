@@ -5,7 +5,11 @@ import { first } from 'rxjs/operators';
 
 import { AuthenticationService } from '../../../_services/authentication.service';
 import { AlertService } from './../../../_services/alert.service';
-
+import {
+    AuthService as SocialAuthService,
+    FacebookLoginProvider,
+    GoogleLoginProvider
+  } from 'angularx-social-login';
 @Component({
     templateUrl: './login.component.html',
     styleUrls: ["./login.component.css"]
@@ -24,7 +28,8 @@ export class LoginComponent implements OnInit {
         private route: ActivatedRoute,
         private router: Router,
         private authenticationService: AuthenticationService,
-        private alertService: AlertService
+        private alertService: AlertService,
+        private socialAuthService: SocialAuthService
     ) { 
         if (this.authenticationService.currentUserValue) { 
             this.router.navigate(['/']);
@@ -50,6 +55,12 @@ export class LoginComponent implements OnInit {
     get email() { return this.loginForm.get('email'); }
     get password() { return this.loginForm.get('password'); }
 
+
+
+
+
+
+
     onSubmit() {
         this.submitted = true;
 
@@ -71,4 +82,49 @@ export class LoginComponent implements OnInit {
                     this.loading = false;
                 });
     }
+
+     facebookLogin() {
+        let socialPlatformProvider = FacebookLoginProvider.PROVIDER_ID;
+        this.socialAuthService.signIn(socialPlatformProvider).then(
+          (userData) => {
+                //this will return user data from facebook. What you need is a user token which you will send it to the server
+                // this.sendToRestApiMethod(userData.token);
+                this.loading = true;
+                this.authenticationService.fbLogin(userData.authToken)
+                .pipe(first())
+            .subscribe(
+                data => {
+                    this.router.navigate([this.returnUrl]);
+                },
+                error => {
+                    this.loading = false;
+                    this.alertService.error(error);
+            
+                });
+           }
+        );
+    }
+    googleLogin() {
+        let socialPlatformProvider = GoogleLoginProvider.PROVIDER_ID;
+        this.socialAuthService.signIn(socialPlatformProvider).then(
+          (userData) => {
+                //this will return user data from facebook. What you need is a user token which you will send it to the server
+                // this.sendToRestApiMethod(userData.token);
+                this.loading = true;
+                this.authenticationService.googleLogin(userData.authToken)
+                .pipe(first())
+            .subscribe(
+                data => {
+                    this.router.navigate([this.returnUrl]);
+                },
+                error => {
+                    this.loading = false;
+                    this.alertService.error(error);
+            
+                });
+           }
+        );
+    }
+
+
 }
