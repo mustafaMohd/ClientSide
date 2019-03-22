@@ -1,3 +1,68 @@
+
+<div fxLayout="row" fxLayout.xs="column" 
+fxLayoutWrap fxLayoutGap="10%" fxLayoutAlign="space-around center">
+
+  
+<mat-card class="login-matcard">
+
+
+    <mat-card-actions class='actionButtons'>
+
+      <button mat-flat-button color="primary" style='float: left;' (click)="facebookLogin()" >Sign with Facebook</button>
+      
+          <button mat-flat-button color="warn" (click)="googleLogin()" style='float: right;' >Sign In with google</button>
+      
+
+
+    </mat-card-actions>
+
+    <mat-divider> </mat-divider>
+    
+
+
+  <mat-progress-bar mode="query" *ngIf="loading"></mat-progress-bar>
+
+  <h3 class="title-center"> Sign In</h3>
+
+
+  <form [formGroup]="loginForm" class="lgForm" (ngSubmit)="onSubmit()">
+
+    <mat-form-field class="full-width">
+      <input matInput placeholder="Email" [formControl]="email" required>
+      <mat-error *ngIf=" !email.hasError('required') && email.hasError('email')"> Must be an email</mat-error>
+    </mat-form-field>
+
+
+    <mat-form-field class="full-width">
+      <input matInput placeholder=" Password" [formControl]="password" [type]="hide ? 'text' : 'password'">
+      <mat-icon matSuffix (click)="hide = !hide" color='primary'>{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
+      <mat-error *ngIf="password.hasError('required')">Password is Required</mat-error>
+    </mat-form-field>
+
+
+
+    <!-- put buttons here -->
+    <div class="example-button-row">
+      <button color="primary" class="full-width" type="submit" mat-raised-button color="primary" [disabled]="loading">Login</button>
+    </div>
+  </form>
+  
+
+  <mat-card-actions class='actionButtons'>
+      
+    <a mat-raised-button color="accent" routerLink="/register"> Register to become a member</a>
+
+  </mat-card-actions>
+
+ 
+
+</mat-card>
+
+  
+</div>
+ 
+  
+
 <!-- <h2>Login</h2>
 <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
     <div class="form-group">
@@ -20,38 +85,3 @@
         <a routerLink="/register" class="btn btn-link">Register</a>
     </div>
 </form> -->
-<h2>Sign in Component</h2>
-
-<mat-progress-bar mode="query" *ngIf="loading"></mat-progress-bar>
-<form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-
-  <mat-form-field class="full-width">
-    <input matInput placeholder="Enter your email" [formControl]="email" required>
-    <mat-error *ngIf=" !email.hasError('required') && email.hasError('email')"> Must be an email</mat-error>
-  </mat-form-field>
-    
-
-  <mat-form-field class="full-width">
-    <input matInput placeholder="Enter your Password" [formControl]="password"  [type]="hide ? 'text' : 'password'">
-    <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
-    <mat-error *ngIf="password.hasError('required')">Password is Required</mat-error>
-  </mat-form-field>
-
-
-
-  <!-- put buttons here -->
-  <div class="example-button-row">
-  <button color="primary" class="full-width"
-   type="submit" mat-raised-button color="primary" [disabled]="loading">Login</button>
-</div>
-
-   <div class="example-button-row">
-    <button color="primary" (click)="facebookLogin()">Login with Facebook</button>
-  <a mat-button color="primary" routerLink="/register">  Register to become a member! !</a>
-  <button color="primary" (click)="googleLogin()">Login with google</button>
-  
-
-</div>
-
-
-</form>

@@ -11,13 +11,13 @@ import { AppComponent } from './app.component';
 import { ErrorInterceptor } from './_helpers/error.interceptor';
 import { JwtInterceptor } from './_helpers/jwt.interceptor';
 import { UserService } from './_services';
-import {
-    MatToolbarModule, MatMenuModule,
-    MatButtonModule, MatInputModule,
-    MatSidenavModule,
-    MatSelectModule,
-    MatIconModule, MatFormFieldModule, MatCardModule, MatListModule, MatProgressBarModule
-} from '@angular/material';
+// import {
+//     MatToolbarModule, MatMenuModule,
+//     MatButtonModule, MatInputModule,
+//     MatSidenavModule,
+//     MatSelectModule,MatDividerModule,
+//     MatIconModule, MatFormFieldModule, MatCardModule, MatListModule, MatProgressBarModule
+// } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoginComponent } from './_components/userComponent/login';
 
@@ -29,6 +29,7 @@ import { RegisterComponent } from './_components/userComponent/register';
 import { NavbarComponent } from './_components/navbarComponent/navbar.component';
 import { ProfileComponent } from './_components/userComponent/profile';
 import { AlertComponent } from './_components/alertComponent/alert.component';
+import { AppMaterialModule } from './AppMaterialModule.module';
 @NgModule({
     imports: [
         BrowserModule,
@@ -36,20 +37,10 @@ import { AlertComponent } from './_components/alertComponent/alert.component';
         ReactiveFormsModule,
         HttpClientModule,
         AppRoutingModule,
+        AppMaterialModule,
+
         FlexLayoutModule,
         BrowserAnimationsModule,
-        MatToolbarModule,
-        MatSidenavModule,
-        MatIconModule,
-        MatButtonModule,
-
-        MatCardModule,
-        MatMenuModule,
-        MatListModule,
-        MatFormFieldModule,
-        MatInputModule,
-        MatSelectModule,
-        MatProgressBarModule,
         SocialLoginModule,
     ],
     declarations: [

@@ -31,12 +31,13 @@ export class NavbarComponent implements OnInit,OnDestroy {
 
   onLogout() {
     this.authenticationService.logout();
-    this.router.navigate(['/']);
-    this.AlertService.clear();
-                
+    this.AlertService.success(`successfully logout`);
+
+  this.AlertService.clear();            
 
   
   }
+  
   ngOnInit() {
     
     
