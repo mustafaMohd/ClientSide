@@ -5,7 +5,7 @@ import { User } from '../_models';
 
 @Injectable({ providedIn: 'root' })
 export class UserService {
-     apiUrl: String = 'http://localhost:3000';
+     apiUrl: String = 'http://localhost:3000/api';
 
     constructor(private http: HttpClient) { }
  findByEmail(email:String){
