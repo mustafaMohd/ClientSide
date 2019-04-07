@@ -1,16 +1,16 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+//  import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
-import { FlexLayoutModule } from '@angular/flex-layout';
+
 
 import { AppComponent } from './app.component';
 
 import { ErrorInterceptor } from './_helpers/error.interceptor';
 import { JwtInterceptor } from './_helpers/jwt.interceptor';
-import { UserService } from './_services';
+// import { UserService } from './_services';
 // import {
 //     MatToolbarModule, MatMenuModule,
 //     MatButtonModule, MatInputModule,
@@ -19,43 +19,53 @@ import { UserService } from './_services';
 //     MatIconModule, MatFormFieldModule, MatCardModule, MatListModule, MatProgressBarModule
 // } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { LoginComponent } from './_components/userComponent/login';
 
-import { SocialLoginModule, AuthServiceConfig } from 'angularx-social-login';
-import { getAuthServiceConfigs } from './socialloginConfig';
+// import { SocialLoginModule, AuthServiceConfig } from 'angularx-social-login';
+// import { getAuthServiceConfigs } from './_components/auth/socialloginConfig';
 
 import { HomeComponent } from './_components/homeComponent';
-import { RegisterComponent } from './_components/userComponent/register';
-import { NavbarComponent } from './_components/navbarComponent/navbar.component';
-import { ProfileComponent } from './_components/userComponent/profile';
+
+
+// import { LoginComponent } from './_components/userComponent/login';
+// import { RegisterComponent } from './_components/userComponent/register';
+// import { ProfileComponent } from './_components/userComponent/profile';
+
+
 import { AlertComponent } from './_components/alertComponent/alert.component';
-import { AppMaterialModule } from './AppMaterialModule.module';
+import { NavbarComponent } from './_components/navbarComponent/navbar.component';
+
+import { SharedModule } from './_components/shared/SharedModule.module';
+import { AuthModule } from './_components/auth/auth.module';
 @NgModule({
     imports: [
         BrowserModule,
-        FormsModule,
-        ReactiveFormsModule,
+        // FormsModule,
+        // ReactiveFormsModule,
         HttpClientModule,
+        
+        AuthModule,
         AppRoutingModule,
-        AppMaterialModule,
-
-        FlexLayoutModule,
+        SharedModule,
+       
+        
         BrowserAnimationsModule,
-        SocialLoginModule,
+        // SocialLoginModule,
+        
     ],
     declarations: [
         AppComponent,
-        ProfileComponent,
-        LoginComponent,
+        // ProfileComponent,
+        // LoginComponent,
+        // RegisterComponent,
         HomeComponent,
         AlertComponent,
-        RegisterComponent,
+       
         NavbarComponent,
 
     ],
     providers: [
-        UserService,
-        {provide: AuthServiceConfig,useFactory: getAuthServiceConfigs},
+        // UserService,
+        // {provide: AuthServiceConfig,useFactory: getAuthServiceConfigs},
         { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
         { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
         // provider used to create fake backend

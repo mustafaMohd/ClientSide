@@ -11,20 +11,19 @@ import { AlertService } from './../../_services/alert.service';
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css']
 })
-export class NavbarComponent implements OnInit,OnDestroy {
+export class NavbarComponent  {
   
-  
-  currentUser: User;
-  currentUserSubscription: Subscription;
+  @Input() currentUser: any = {};
+  @Input() title: any = "";
+
+
+  // currentUser: User;
+  // currentUserSubscription: Subscription;
 
 
   constructor(private authenticationService: AuthenticationService,
     private router: Router,private AlertService:AlertService) {
    
-    this.currentUserSubscription = this.authenticationService.currentUser.subscribe(
-      user => {
-        this.currentUser = user;
-    })
   }
  
   
@@ -32,21 +31,29 @@ export class NavbarComponent implements OnInit,OnDestroy {
   onLogout() {
     this.authenticationService.logout();
     this.AlertService.success(`successfully logout`);
+    setTimeout(()=>{
+      this.AlertService.clear();            
+      
+    },3000);
 
-  this.AlertService.clear();            
-
-  
-  }
-  
-  ngOnInit() {
-    
-    
-
-    
-  }
-  ngOnDestroy() {
-    this.currentUserSubscription.unsubscribe();
+  this.router.navigate(['']);
    
+  
   }
+  
+  // ngOnInit() {
+    
+  //   const timer = JSON.parse(localStorage.getItem('timer'));
+  //   if (timer && (Date.now() > timer)) {
+  //     this.authenticationService.logout();
+  //     this.router.navigate(['/login']);
+  //   }  
+
+    
+  // }
+  // ngOnDestroy() {
+  //   // this.currentUserSubscription.unsubscribe();
+   
+  // }
 
 }

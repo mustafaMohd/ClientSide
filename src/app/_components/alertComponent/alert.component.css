@@ -1,3 +1,7 @@
+.title-center {
+  flex: 1 1 auto;
+  text-align: center;
+}
 .alert {
     padding: 15px;
     margin-bottom: 20px;

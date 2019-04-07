@@ -2,7 +2,7 @@ import { Component, OnInit , OnDestroy  } from '@angular/core';
 import { User } from '../../../_models/index';
 import { Subscription } from 'rxjs';
 // import { first } from 'rxjs/operators';
-import { AuthenticationService, UserService } from '../../../_services';
+import { AuthenticationService } from '../../../_services';
 
 
 @Component({

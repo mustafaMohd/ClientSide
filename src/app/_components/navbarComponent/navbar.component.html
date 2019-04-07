@@ -1,7 +1,7 @@
 <mat-toolbar  color="primary">
   
      <a mat-button text-center routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
-        <mat-icon class="example-icon">home</mat-icon>&nbsp; Home
+        <mat-icon class="example-icon">home</mat-icon>&nbsp;{{title}}
       </a>
         
     <span class="example-fill-remaining-space"></span>
@@ -9,13 +9,14 @@
     <div *ngIf="currentUser">
         <button mat-stroked-button (click)="onLogout()">Logout</button>
         &nbsp;
-        <a mat-button  routerLink="/profile" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Profile</a>
+        <a mat-button  routerLink="/auth/profile" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">{{currentUser.fullname}}</a>
       </div>
     
       <div *ngIf="!currentUser">
-        <a mat-button color='accent'  routerLink="/register" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Register</a>
+        <a mat-button color='accent'  routerLink="/auth/register" 
+        routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Register</a>
         &nbsp;
-        <a mat-button  routerLink="/login" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Sign
+        <a mat-button  routerLink='/auth/login' routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Sign
           in</a>
       </div>
     

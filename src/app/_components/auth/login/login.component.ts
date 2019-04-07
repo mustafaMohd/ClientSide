@@ -32,7 +32,7 @@ export class LoginComponent implements OnInit {
         private socialAuthService: SocialAuthService
     ) { 
         if (this.authenticationService.currentUserValue) { 
-            this.router.navigate(['/']);
+            this.router.navigate(['/auth/profile']);
         }   
     }
 
@@ -70,20 +70,32 @@ export class LoginComponent implements OnInit {
         }
 
         this.loading = true;
-        console.log(this.email.value, this.password.value);
+        //console.log(this.email.value, this.password.value);
         this.authenticationService.login(this.email.value, this.password.value)
             .pipe(first())
             .subscribe(
                 data => {
-                    this.router.navigate([this.returnUrl]);
+                    this.alertService.success(  ` Wellcome back ${data.user.fullname} `);
+                    this.router.navigate([this.returnUrl]); 
+                    
+                    setTimeout(()=>{
+                        this.alertService.clear();            
+                        
+                      },3000);
+                   
                 },
                 error => {
                     this.alertService.error(error);
                     this.loading = false;
+                    setTimeout(()=>{
+                        this.alertService.clear();            
+                        
+                      },3000);
                 });
     }
 
-     facebookLogin() {
+    //To be done change the settimeout to seconds
+    facebookLogin() {
         let socialPlatformProvider = FacebookLoginProvider.PROVIDER_ID;
         this.socialAuthService.signIn(socialPlatformProvider).then(
           (userData) => {
@@ -95,10 +107,19 @@ export class LoginComponent implements OnInit {
             .subscribe(
                 data => {
                     this.router.navigate([this.returnUrl]);
+                    this.alertService.success(  ` Wellcome  ${data.user.fullname} `);
+                    setTimeout(()=>{
+                        this.alertService.clear();            
+                        
+                      },3000);
                 },
                 error => {
                     this.loading = false;
                     this.alertService.error(error);
+                    setTimeout(()=>{
+                        this.alertService.clear();            
+                        
+                      },13000);
             
                 });
            }
@@ -115,11 +136,21 @@ export class LoginComponent implements OnInit {
                 .pipe(first())
             .subscribe(
                 data => {
+                    this.alertService.success(  ` Wellcome  ${data.user.fullname} `);
+                    setTimeout(()=>{
+                        this.alertService.clear();            
+                        
+                      },3000);
                     this.router.navigate([this.returnUrl]);
                 },
                 error => {
                     this.loading = false;
+
                     this.alertService.error(error);
+                    setTimeout(()=>{
+                        this.alertService.clear();            
+                        
+                      },3000);
             
                 });
            }
