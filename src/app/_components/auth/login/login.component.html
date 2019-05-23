@@ -6,16 +6,19 @@
 
     <mat-card-actions class='actionButtons'>
 
-      <button mat-flat-button color="primary" style='float: left;' (click)="facebookLogin()">Sign In with FB</button>
+      <button mat-flat-button color="primary" style='float: left;' (click)="facebookLogin()">login with FB</button>
 
-      <button mat-flat-button color="warn" (click)="googleLogin()" style='float: right;'>Sign In with Google</button>
+      <button mat-flat-button color="warn" (click)="googleLogin()" style='float: right;'>login with Google</button>
 
 
 
     </mat-card-actions>
-
-
+    <mat-divider></mat-divider>
     <mat-progress-bar mode="query" *ngIf="loading"></mat-progress-bar>
+    <br>
+    
+
+    
 
     <h3 class="title-center"> Sign In</h3>
 
@@ -24,7 +27,8 @@
 
 
 
-      <mat-form-field appearance="outline" class="full-width">
+      <mat-form-field  appearance="outline" class="full-width">
+          <mat-label>Email</mat-label>
         <input matInput placeholder="Email" [formControl]="email" required>
         <mat-error *ngIf="email.hasError('required')"> Email is Required</mat-error>
         
@@ -33,6 +37,7 @@
 
 
       <mat-form-field appearance="outline" class="full-width">
+          <mat-label>password</mat-label>
         <input matInput placeholder=" Password" [formControl]="password" [type]="hide ? 'text' : 'password'">
         <mat-icon matSuffix (click)="hide = !hide" color='primary'>{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
         <mat-error *ngIf="password.hasError('required')">Password is Required</mat-error>
@@ -46,15 +51,18 @@
           [disabled]="loading">Login</button>
       </div>
     </form>
-
     <br>
-
+    <br>
+   
+    <mat-divider></mat-divider>
+    
     <mat-card-actions class='actionButtons'>
-
-      <a mat-raised-button color="accent" routerLink="/auth/register"> Register to become a member</a>
-
+      
+      <a mat-raised-button style='float: right;' color="accent" routerLink="/auth/register"> Become a member</a>
+      
     </mat-card-actions>
-
+    
+    
 
 
   </mat-card>

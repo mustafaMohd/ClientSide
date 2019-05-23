@@ -1,6 +1,7 @@
 export class User {
    
-    id: string;
+    _id: number;
+   email:string;
     method: string;
     fullname:string;
     createdAt: Date;

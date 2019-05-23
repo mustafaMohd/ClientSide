@@ -29,6 +29,7 @@ import {LoginComponent} from './login/login.component';
 import {RegisterComponent} from './register/register.component';
 import { ProfileComponent } from './profile/profile.component';
 import { AuthGuard } from 'src/app/_grauds/auth.guard';
+import { EditComponent } from './edit/edit.component';
 
 const routes: Routes = [{
   path: 'auth',
@@ -46,7 +47,12 @@ const routes: Routes = [{
   {
     path: 'profile',
     component: ProfileComponent, canActivate: [AuthGuard]
+  },
+  {
+    path: 'edit',
+    component: EditComponent, canActivate: [AuthGuard]
   }
+
 
 ]
 }];

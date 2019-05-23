@@ -10,6 +10,7 @@ import { AuthenticationService } from '../../_services/authentication.service';
 import { AuthRoutingModule } from './auth-routing.module';
 import { ProfileComponent } from './profile';
 import { getAuthServiceConfigs } from './socialloginConfig';
+import { EditComponent } from './edit/edit.component';
 
 @NgModule({
   imports: [
@@ -22,7 +23,8 @@ import { getAuthServiceConfigs } from './socialloginConfig';
   declarations: [
     LoginComponent,
     RegisterComponent,
-    ProfileComponent
+    ProfileComponent,
+    EditComponent
   ],
   providers: [
     AuthenticationService,

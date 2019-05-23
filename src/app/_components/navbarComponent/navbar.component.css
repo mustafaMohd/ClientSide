@@ -7,7 +7,7 @@
    
   
   .mat-toolbar a.active {
-   background: #283593;
+   background: #5367da;
 }
 
 
@@ -16,3 +16,10 @@
      Every toolbar row uses a flexbox row layout. */
   flex: 1 1 auto;
 }
+.mat-menu-item:hover {
+  background: #d2d7f8;
+
+}
+/* .mat-button :hover{
+background: #283593;
+} */

@@ -24,7 +24,7 @@ export class  AppComponent implements OnInit, OnDestroy {
 currentUserSubscription: Subscription;
 
     
-    title = 'Universal Testing Port';
+    title = 'testingPortal.pk';
     constructor( 
         private router: Router,private alertService :AlertService,
         private authenticationService: AuthenticationService

@@ -10,22 +10,25 @@
         FB</button>
 
       <button mat-flat-button color="warn" (click)="googleLogin()" style='float: right;'>Sign up with Google</button>
-
+      
 
 
     </mat-card-actions>
+    <mat-divider></mat-divider>
+    <br>
     
     <mat-progress-bar mode="query" *ngIf="loading"></mat-progress-bar>
 
     <p class="title-center">Sign up</p> 
-    <br>
+    
     <!-- <h3 class="title-center"> Sign up</h3> -->
     
 
 
     <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
 
-      <mat-form-field appearance="outline" class="full-width">
+      <mat-form-field  appearance="outline" class="full-width">
+          <mat-label>Full Name</mat-label>
         <input matInput placeholder=" Full Name" [formControl]="fullname" required>
         <mat-error *ngIf="fullname.hasError('required')"> full name is required</mat-error>
         <mat-error *ngIf="fullname.hasError('minlength') && !fullname.hasError('required')">
@@ -38,6 +41,7 @@
       
       
       <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Email</mat-label>
         <input matInput placeholder="Enter your email" [formControl]="email" required>
         <mat-error *ngIf="email.hasError('required')"> Email is Required</mat-error>
         <mat-error *ngIf="!email.hasError('required') && email.hasError('email')"> A Valid Email is Required</mat-error>
@@ -45,6 +49,7 @@
       </mat-form-field>
 
       <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Password</mat-label>
         <input matInput placeholder="Enter your Password" [formControl]="password" [type]="hide ? 'text' : 'password'">
         <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
 
@@ -53,21 +58,24 @@
         </mat-error>
         <mat-error *ngIf="password.hasError('minlength') && !password.hasError('required')">
           Password Must be at least 6 letters</mat-error>
-        <mat-error *ngIf="password.hasError('maxlength')">
+        <mat-error *ngIf="password.hasError('maxlength') && !password.hasError('required')">
           Password with more than 24 characters.
         </mat-error>
       </mat-form-field>
 
 
       <mat-form-field appearance="outline" class="full-width">
-        <input matInput placeholder="verify your Password" [formControl]="verifyPassword" [errorStateMatcher]="matcher"
+          <mat-label>verify Password</mat-label>
+        <input matInput placeholder="verify your Password" [formControl]="verifyPassword"
           [type]="hide ? 'text' : 'password'">
         <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
         <mat-error *ngIf="verifyPassword.hasError('required')">
-          Password Required
+          verify Password Required
         </mat-error>
 
-        <mat-error *ngIf="verifyPassword.hasError('passwordsDonotMatch')">Password Do not Match</mat-error>
+        <mat-error *ngIf="verifyPassword.hasError('mustMatch') && !password.hasError('required')">
+          Password Do not Match
+        </mat-error>
       </mat-form-field>
 
       <!-- put buttons here -->

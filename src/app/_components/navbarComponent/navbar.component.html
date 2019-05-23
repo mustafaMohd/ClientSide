@@ -7,16 +7,29 @@
     <span class="example-fill-remaining-space"></span>
     
     <div *ngIf="currentUser">
-        <button mat-stroked-button (click)="onLogout()">Logout</button>
+        <button  mat-raised-button color ='accent'[matMenuTriggerFor]="menu">{{currentUser.fullname}}</button>
+        <mat-menu  #menu="matMenu">
+          <button  mat-menu-item (click)="onLogout()">Logout</button>
+          
+          <button mat-menu-item (click)="onProfile()">Profile</button>
+<!--           
+          <button >
+           <a  routerLink="/auth/profile" >Profile settings</a>
+         
+          </button>     
+           -->
+        </mat-menu>
+    
+      <!-- <button mat-stroked-button (click)="onLogout()">Logout</button>
         &nbsp;
-        <a mat-button  routerLink="/auth/profile" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">{{currentUser.fullname}}</a>
+        <a mat-button  routerLink="/auth/profile" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">{{currentUser.fullname}}</a> -->
       </div>
     
       <div *ngIf="!currentUser">
-        <a mat-button color='accent'  routerLink="/auth/register" 
+        <a  mat-button    routerLink="/auth/register" 
         routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Register</a>
         &nbsp;
-        <a mat-button  routerLink='/auth/login' routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Sign
+        <a  mat-button   routerLink='/auth/login' routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Sign
           in</a>
       </div>
     

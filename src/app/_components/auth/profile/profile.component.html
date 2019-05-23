@@ -1,13 +1,33 @@
-<h1>Profile component</h1>
-<h2>{{currentUser.fullname}}</h2>
 
-<div class="jumbotron">
-  <div class="container">
-    <div class="row">
-      <div class="col-sm-6 offset-sm-3">
+
+<div fxLayout="row" fxLayout.sm="column" fxLayout.xs="column"  fxLayoutGap="10%" fxLayoutAlign="space-around center">
+  <mat-card  fxFlex='50' class="profile-card">
+    
+    <mat-card-content>
+        <label>     Full Name
+      <mat-card-title>{{currentUser.fullname}}</mat-card-title>
+    </label>
+      <mat-divider></mat-divider>
+<br>
+
+
+<label>Email
+      <mat-card-title>{{currentUser.email}}</mat-card-title></label>
+      <mat-divider></mat-divider>
+
+      {{currentUser.id}}
+
+    
+    </mat-card-content>
+    <mat-card-actions>
+       <a mat-button color="primary"routerLink="/auth/edit" >Edit</a>
        
-        
-      </div>
-    </div>
-  </div>
+       <a mat-button color="primary"routerLink="/auth/edit" >Change Password</a>
+       <a mat-button color="primary"routerLink="/auth/edit" >verify Email</a>
+      
+      
+    </mat-card-actions>
+  </mat-card>
+  
+
 </div>

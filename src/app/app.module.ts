@@ -36,6 +36,7 @@ import { NavbarComponent } from './_components/navbarComponent/navbar.component'
 
 import { SharedModule } from './_components/shared/SharedModule.module';
 import { AuthModule } from './_components/auth/auth.module';
+
 @NgModule({
     imports: [
         BrowserModule,
@@ -61,6 +62,8 @@ import { AuthModule } from './_components/auth/auth.module';
         AlertComponent,
        
         NavbarComponent,
+       
+     
 
     ],
     providers: [

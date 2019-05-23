@@ -10,6 +10,7 @@ import {
     FacebookLoginProvider,
     GoogleLoginProvider
   } from 'angularx-social-login';
+import { MustMatch } from 'src/app/_helpers';
 
 
 
@@ -48,11 +49,11 @@ export class RegisterComponent implements OnInit {
         }
     }
     
-    passwordValidator(fg:FormGroup){
-        const condition=fg.get('password').value !== fg.get('verifyPassword').value;
-        return condition ? {passwordDonotMatach:true}:null;
-    }
-//    emailValidator(fg:FormGroup){
+//     passwordValidator(fg:FormGroup){
+//         const condition=fg.get('password').value !== fg.get('verifyPassword').value;
+//         return condition ? {passwordDonotMatch:true}:null;
+//     }
+// //    emailValidator(fg:FormGroup){
 //         const email=fg.get('email').value;
 //         const existedEmail= this.userService.findByEmail;
 
@@ -67,16 +68,12 @@ export class RegisterComponent implements OnInit {
             password: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(24)]],
             verifyPassword:['',[Validators.required]]
         
-        },{validator:this.passwordValidator}
+        },{validator:MustMatch('password', 'verifyPassword')}
         );
     
     
     }
-    matcher = new MyErrorStateMatcher()
-    // parentErrorStateMatcher = new ParentErrorStateMatcher();
-    // // convenience getter for easy access to form fields
-    // get f() { return this.registerForm.controls; }
-
+    
     get fullname() { return this.registerForm.get('fullname'); }
     get email() { return this.registerForm.get('email'); }
     get password() { return this.registerForm.get('password'); }

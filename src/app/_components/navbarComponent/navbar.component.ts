@@ -40,6 +40,10 @@ export class NavbarComponent  {
    
   
   }
+  onProfile(){
+    this.router.navigate(['/auth/profile']);
+  
+  }
   
   // ngOnInit() {
     
