@@ -21,10 +21,13 @@
     </mat-card-content>
     <mat-card-actions>
        <a mat-button color="primary"routerLink="/auth/edit" >Edit</a>
-       
-       <a mat-button color="primary"routerLink="/auth/edit" >Change Password</a>
-       <a mat-button color="primary"routerLink="/auth/edit" >verify Email</a>
       
+         <div *ngIf="currentUser.method==='local'">
+            <a mat-button color="primary"routerLink="/auth/changePassword" >Change Password</a>
+            <a mat-button color="primary"routerLink="/auth/edit" >verify Email</a>
+           
+         </div>       
+       
       
     </mat-card-actions>
   </mat-card>

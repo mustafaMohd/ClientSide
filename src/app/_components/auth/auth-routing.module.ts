@@ -29,7 +29,10 @@ import {LoginComponent} from './login/login.component';
 import {RegisterComponent} from './register/register.component';
 import { ProfileComponent } from './profile/profile.component';
 import { AuthGuard } from 'src/app/_grauds/auth.guard';
+
+import { LocalUserGuard } from 'src/app/_grauds/localUser.guard';
 import { EditComponent } from './edit/edit.component';
+import { ChangePasswordComponent } from './change-password/change-password.component';
 
 const routes: Routes = [{
   path: 'auth',
@@ -51,15 +54,19 @@ const routes: Routes = [{
   {
     path: 'edit',
     component: EditComponent, canActivate: [AuthGuard]
+  },
+  {
+    path: 'changePassword',
+    component: ChangePasswordComponent, canActivate: [LocalUserGuard]
   }
-
 
 ]
 }];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  
+exports: [RouterModule]
 })
 
 export class AuthRoutingModule { }

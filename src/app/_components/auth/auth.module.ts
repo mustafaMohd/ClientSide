@@ -11,6 +11,7 @@ import { AuthRoutingModule } from './auth-routing.module';
 import { ProfileComponent } from './profile';
 import { getAuthServiceConfigs } from './socialloginConfig';
 import { EditComponent } from './edit/edit.component';
+import { ChangePasswordComponent } from './change-password/change-password.component';
 
 @NgModule({
   imports: [
@@ -24,7 +25,8 @@ import { EditComponent } from './edit/edit.component';
     LoginComponent,
     RegisterComponent,
     ProfileComponent,
-    EditComponent
+    EditComponent,
+    ChangePasswordComponent,
   ],
   providers: [
     AuthenticationService,

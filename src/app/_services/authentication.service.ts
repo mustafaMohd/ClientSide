@@ -10,7 +10,7 @@ import { AlertService } from './alert.service';
 export class AuthenticationService {    
 
     // public isloggedIn:boolean=false;
-    apiUrl: String = 'https://localhost:3000/api/auth';
+    apiUrl: String = 'https://localhost:3000/api';
 
     private currentUserSubject: BehaviorSubject<User>;
     public currentUser: Observable<User>;
@@ -37,7 +37,7 @@ export class AuthenticationService {
 
     register(fullname:string,email: string, password: string){
     
-        return this.http.post<any>(`${this.apiUrl}/register`, { fullname,email, password })
+        return this.http.post<any>(`${this.apiUrl}/auth/register`, { fullname,email, password })
             .pipe(map(data => {
 
                 console.log(data);
@@ -72,7 +72,7 @@ export class AuthenticationService {
 
     update(fullname:string,email: string){
     
-        return this.http.post<any>(`${this.apiUrl}/update`, { fullname,email })
+        return this.http.post<any>(`${this.apiUrl}/auth/update`, { fullname,email })
             .pipe(map(data => {
 
                 console.log(data);
@@ -102,6 +102,39 @@ export class AuthenticationService {
 
     }
 
+
+    changePassword(password:string,newPassword: string){
+    
+        return this.http.post<any>(`${this.apiUrl}/auth/changePassword`, { password,newPassword })
+            .pipe(map(data => {
+
+                console.log(data);
+                // login successful if there's a jwt token in the response http://localhost:3000
+                if (data && data.token) {
+                    localStorage.removeItem('currentUser');
+                    localStorage.removeItem('currentUserToken');
+                
+                    localStorage.removeItem('timer');
+                    // store user details and jwt token in local storage to keep user logged in between page refreshes
+                   
+                    localStorage.setItem('currentUser', JSON.stringify(data.user));
+                    localStorage.setItem('currentUserToken',data.token);
+                    
+                    const time_to_login = Date.now() + 604800000; 
+                    localStorage.setItem('timer', JSON.stringify(time_to_login));
+                    this.currentUserSubject.next(data.user);
+
+                    this.alertService.success(" Successfully Password changed")
+                }
+
+                return data;
+            })
+            );
+ 
+
+
+    }
+
     getById(id: number) {
                 return this.http.get(`${this.apiUrl}/${id}`);
             }
@@ -110,7 +143,7 @@ export class AuthenticationService {
 
     
     login(email: string, password: string) {
-        return this.http.post<any>(`${this.apiUrl}/authenticate`, { email, password })
+        return this.http.post<any>(`${this.apiUrl}/auth/authenticate`, { email, password })
             .pipe(map(data => {
                 // login successful if there's a jwt token in the response http://localhost:3000
                 if (data && data.token) {
@@ -136,7 +169,7 @@ export class AuthenticationService {
     }
 
     fbLogin(token: string){
-        return this.http.post<any>(`${this.apiUrl}/oauth/facebook`, { access_token: token })
+        return this.http.post<any>(`${this.apiUrl}/auth/oauth/facebook`, { access_token: token })
             .pipe(map(data => {
                 // login successful if there's a jwt token in the response http://localhost:3000
                 if (data && data.token) {
@@ -170,7 +203,7 @@ export class AuthenticationService {
 
 
     googleLogin(token: string){
-        return this.http.post<any>(`${this.apiUrl}/oauth/google`, { access_token: token })
+        return this.http.post<any>(`${this.apiUrl}/auth/oauth/google`, { access_token: token })
             .pipe(map(data => {
                 // login successful if there's a jwt token in the response http://localhost:3000
                 if (data && data.token) {
