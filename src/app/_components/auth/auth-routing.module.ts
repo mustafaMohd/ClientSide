@@ -33,6 +33,7 @@ import { AuthGuard } from 'src/app/_grauds/auth.guard';
 import { LocalUserGuard } from 'src/app/_grauds/localUser.guard';
 import { EditComponent } from './edit/edit.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 
 const routes: Routes = [{
   path: 'auth',
@@ -46,7 +47,10 @@ const routes: Routes = [{
   }, {
     path: 'register',
     component: RegisterComponent
-  },
+  },  {
+    path: 'forgotPassword',
+    component: ForgotPasswordComponent}
+,
   {
     path: 'profile',
     component: ProfileComponent, canActivate: [AuthGuard]
@@ -58,7 +62,7 @@ const routes: Routes = [{
   {
     path: 'changePassword',
     component: ChangePasswordComponent, canActivate: [LocalUserGuard]
-  }
+  },
 
 ]
 }];

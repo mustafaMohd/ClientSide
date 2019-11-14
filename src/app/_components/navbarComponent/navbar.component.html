@@ -7,11 +7,19 @@
     <span class="example-fill-remaining-space"></span>
     
     <div *ngIf="currentUser">
-        <button  mat-raised-button color ='accent'[matMenuTriggerFor]="menu">{{currentUser.fullname}}</button>
+        <button  mat-raised-button color ='accent'[matMenuTriggerFor]="menu">{{currentUser.fullname}}
+            <i class="material-icons">
+                expand_more
+                </i></button>
         <mat-menu  #menu="matMenu">
-          <button  mat-menu-item (click)="onLogout()">Logout</button>
           
-          <button mat-menu-item (click)="onProfile()">Profile</button>
+          
+          <button mat-menu-item (click)="onProfile()">Profile <i class="material-icons">
+account_circle
+</i></button>
+<button  mat-menu-item (click)="onLogout()">Logout <i class="material-icons">
+  settings_power
+  </i></button>
 <!--           
           <button >
            <a  routerLink="/auth/profile" >Profile settings</a>
@@ -27,10 +35,14 @@
     
       <div *ngIf="!currentUser">
         <a  mat-button    routerLink="/auth/register" 
-        routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Register</a>
+        routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Register <i class="material-icons">
+            add_circle_outline
+            </i></a>
         &nbsp;
         <a  mat-button   routerLink='/auth/login' routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Sign
-          in</a>
+          in <i class="material-icons">
+              lock_open
+              </i></a>
       </div>
     
   </mat-toolbar>

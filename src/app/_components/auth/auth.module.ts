@@ -12,6 +12,7 @@ import { ProfileComponent } from './profile';
 import { getAuthServiceConfigs } from './socialloginConfig';
 import { EditComponent } from './edit/edit.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 
 @NgModule({
   imports: [
@@ -27,6 +28,9 @@ import { ChangePasswordComponent } from './change-password/change-password.compo
     ProfileComponent,
     EditComponent,
     ChangePasswordComponent,
+    
+    ForgotPasswordComponent,
+       
   ],
   providers: [
     AuthenticationService,
