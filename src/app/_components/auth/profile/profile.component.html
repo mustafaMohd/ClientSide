@@ -9,14 +9,20 @@
     </label>
 
 <br>
-
+<label>    ID
+  <mat-card-title>{{currentUser._id}}</mat-card-title>
+</label>
 
 Email
       <mat-card-title>{{currentUser.email}}</mat-card-title>
+      <mat-list *ngFor="let role of currentUser.roles">
+          <mat-list-item>
+          {{role}}
+            </mat-list-item> 
+     
+      </mat-list>      
+
       
-
-      {{currentUser.id}}
-
     
     </mat-card-content>
     <mat-card-actions>
@@ -25,12 +31,20 @@ Email
           </i></a>
         </div>
       
-         <div *ngIf="currentUser.method==='local'">
+         <div *ngIf="localUser()">
             <a mat-button color="primary"routerLink="/auth/changePassword" >Change Password</a>
             <a mat-button color="primary"routerLink="/auth/edit" >verify Email</a>
            
          </div>       
-       
+         <br>
+         <br>
+         <div *ngIf="isAdmin()">
+          <button  mat-raised-button class="full-width"  color="primary" (click)="onAdmin()">
+           Admin View
+          </button>  
+          
+                
+         </div> 
       
     </mat-card-actions>
   </mat-card>

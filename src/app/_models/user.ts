@@ -5,5 +5,6 @@ export class User {
     method: string;
     fullname:string;
     createdAt: Date;
+    roles: string[];
    
 }

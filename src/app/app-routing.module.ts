@@ -4,7 +4,9 @@ import { HomeComponent } from './_components/homeComponent';
 // import { LoginComponent } from './_components/userComponent/login';
 // import { RegisterComponent } from './_components/userComponent/register';
 // import { ProfileComponent } from './_components/userComponent/profile';
+import { AdminGuard } from './_grauds';
 import { AuthGuard } from './_grauds';
+
 
 
 const appRoutes: Routes = [
@@ -17,6 +19,10 @@ const appRoutes: Routes = [
                 path: 'auth',
      loadChildren: './_components/auth/auth.module#AuthModule'
     },
+    {
+      path: 'admin',
+loadChildren: './_components/admin/admin.module#AdminModule'
+},
     // app/_components/auth/auth.module#AuthModule
     
    
@@ -28,7 +34,7 @@ const appRoutes: Routes = [
 @NgModule({
   imports: [RouterModule.forRoot(appRoutes, { enableTracing: true })],
   exports: [RouterModule],
-  providers: [AuthGuard],
+  providers: [AuthGuard,AdminGuard],
 })
 export class AppRoutingModule { }
 

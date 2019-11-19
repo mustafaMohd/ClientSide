@@ -3,6 +3,8 @@ import { User } from '../../../_models/index';
 import { Subscription } from 'rxjs';
 // import { first } from 'rxjs/operators';
 import { AuthenticationService } from '../../../_services';
+import { Router } from '@angular/router';
+import { Role } from 'src/app/_models/Role';
 
 
 @Component({
@@ -17,7 +19,7 @@ export class ProfileComponent implements OnInit,OnDestroy  {
   // users: User[] = [];
 
 
-  constructor( private authenticationService: AuthenticationService,
+  constructor( private router: Router,private authenticationService: AuthenticationService,
    ) {
      
    
@@ -28,12 +30,40 @@ export class ProfileComponent implements OnInit,OnDestroy  {
     this.currentUserSubscription = this.authenticationService.currentUser.subscribe(
       user => {
         this.currentUser = user;
+
     })
 
+    // *ngIf="currentUser.method==='local'"
   
     // this.loadAllUsers();
 
   }
+  onAdmin(){
+    this.router.navigate(['/admin/users']);
+  
+  }
+  localUser(){
+    if(this.currentUser.method==='local'){
+      return true;
+  
+  
+    } 
+    return false;
+  }
+  
+  isAdmin(){
+    
+    if(this.currentUser.roles.indexOf(Role.admin) > -1){
+      return true;
+  
+  
+    } 
+    return false;
+  }
+  // onAdmin(){
+  //   this.router.navigate(['/admin/users']);
+  
+  // }
 
   ngOnDestroy() {
     // unsubscribe to ensure no memory leaks

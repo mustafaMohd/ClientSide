@@ -1,5 +1,5 @@
 import { Component, Input, OnInit, OnDestroy } from '@angular/core';
-import { User } from 'src/app/_models';
+
 import { AuthenticationService } from './../../_services/authentication.service';
 import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
@@ -44,6 +44,11 @@ export class NavbarComponent  {
     this.router.navigate(['/auth/profile']);
   
   }
+  
+  // onAdmin(){
+  //   this.router.navigate(['/admin/users']);
+  
+  // }
   
   // ngOnInit() {
     

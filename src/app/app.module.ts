@@ -36,6 +36,8 @@ import { NavbarComponent } from './_components/navbarComponent/navbar.component'
 
 import { SharedModule } from './_components/shared/SharedModule.module';
 import { AuthModule } from './_components/auth/auth.module';
+import { AdminModule } from './_components/admin/admin.module';
+// import { UserListComponent } from './_components/admin/user-management/user-list/user-list.component';
 // import { ForgotPasswordComponent } from './_components/auth/forgot-password/forgot-password.component';
 @NgModule({
     imports: [
@@ -45,6 +47,8 @@ import { AuthModule } from './_components/auth/auth.module';
         HttpClientModule,
         
         AuthModule,
+        AdminModule,
+
         AppRoutingModule,
         SharedModule,
        
@@ -62,6 +66,10 @@ import { AuthModule } from './_components/auth/auth.module';
         AlertComponent,
        
         NavbarComponent,
+       
+        
+       
+       
        
         // ForgotPasswordComponent,
        
