@@ -7,22 +7,23 @@
         <label>     Full Name
       <mat-card-title>{{currentUser.fullname}}</mat-card-title>
     </label>
-      <mat-divider></mat-divider>
+
 <br>
 
 
-<label>Email
-      <mat-card-title>{{currentUser.email}}</mat-card-title></label>
-      <mat-divider></mat-divider>
+Email
+      <mat-card-title>{{currentUser.email}}</mat-card-title>
+      
 
       {{currentUser.id}}
 
     
     </mat-card-content>
     <mat-card-actions>
-       <a mat-button color="primary"routerLink="/auth/edit" >Edit <i class="material-icons">
+    <div><a mat-button color="primary"routerLink="/auth/edit" >Edit <i class="material-icons">
           settings
           </i></a>
+        </div>
       
          <div *ngIf="currentUser.method==='local'">
             <a mat-button color="primary"routerLink="/auth/changePassword" >Change Password</a>
