@@ -11,22 +11,23 @@ export class AdminGuard implements CanActivate {
         private authenticationService: AuthenticationService
     ) { }
 
-    canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
+    canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot):boolean {
         const currentUser = this.authenticationService.currentUserValue;
         const isAdmin=currentUser && currentUser.roles.indexOf('admin') > -1
         
-        if ( !isAdmin) 
+        if ( isAdmin) 
         {
-            this.router.navigate(['/auth/profile'], { queryParams: { returnUrl: state.url } });
-        return false;
+            
             // logged in so return true
-            //return true;
+            return true;
         }
-        return true;
+        // this.router.navigate(['/auth/profile'], { queryParams: { returnUrl: state.url } });
+        // return false;
+        
 
         // not logged in so redirect to login page with the return url
-        // this.router.navigate(['/auth/login'], { queryParams: { returnUrl: state.url } });
-        // return false;
+        this.router.navigate(['/auth/login'], { queryParams: { returnUrl: state.url } });
+        return false;
     
     }
 }
