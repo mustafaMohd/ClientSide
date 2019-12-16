@@ -10,7 +10,7 @@ import {
     FacebookLoginProvider,
     GoogleLoginProvider
   } from 'angularx-social-login';
-import { MustMatch } from 'src/app/_helpers';
+import { MustMatch } from '../../../_helpers/mustMatch';
 
 
 
@@ -46,6 +46,8 @@ export class RegisterComponent implements OnInit {
         // tslint:disable-next-line:no-trailing-whitespace
         if (this.authenticationService.currentUserValue) { 
             this.router.navigate(['/']);
+            this.alertService.error('you are already a logged In', true);
+                   
         }
     }
     
@@ -96,7 +98,7 @@ export class RegisterComponent implements OnInit {
             .pipe(first())
             .subscribe(
                 data => {
-                    this.alertService.success('Registration successful', true);
+                    this.alertService.success(`wellcome ! ${data.user.fullname}`, true);
                     setTimeout(()=>{
                         this.alertService.clear();            
                         
@@ -154,7 +156,7 @@ export class RegisterComponent implements OnInit {
                 .pipe(first())
             .subscribe(
                 data => {
-                    this.alertService.success(  ` Wellcome  ${data.user.fullname} `);
+                    this.alertService.success(  `Wellcome  ${data.user.fullname} `);
                     setTimeout(()=>{
                         this.alertService.clear();            
                         

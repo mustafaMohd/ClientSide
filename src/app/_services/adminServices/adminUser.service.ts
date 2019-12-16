@@ -3,13 +3,14 @@ import { HttpClient } from '@angular/common/http';
 
 import { User } from '../../_models';
 import { map } from 'rxjs/operators';
+import { AlertService } from '../alert.service';
 
 @Injectable({ providedIn: 'root' })
 export class AdminUserService {
      apiUrl: String = 'https://localhost:3000/api/admin';
-    alertService: any;
+    
 
-    constructor(private http: HttpClient) { }
+    constructor(private alertService: AlertService,private http: HttpClient) { }
  findByEmail(email:String){
      return  this.http.get<User[]>(`${this.apiUrl}/users/${email}`);
  }

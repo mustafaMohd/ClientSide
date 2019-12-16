@@ -75,7 +75,7 @@
           verify Password Required
         </mat-error>
 
-        <mat-error *ngIf="verifyPassword.hasError('mustMatch') && !password.hasError('required')">
+        <mat-error *ngIf="verifyPassword.hasError('mustMatch') && !verifyPassword.hasError('required')">
           Password Do not Match
         </mat-error>
       </mat-form-field>
@@ -93,4 +93,5 @@
 
     </form>
   </mat-card>
+
 </div>

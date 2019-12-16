@@ -1,15 +1,23 @@
-<p>
-  user-management works!
-  list
-</p>
-routerlink
+<div fxLayout="row" fxLayout.md="row" fxLayout.sm="column" fxLayout.xs="column"  fxLayoutGap="5%" fxLayoutAlign="space-around center">
+    <div  fxFlex='35' class="col-md-5">
+        <app-user-list></app-user-list>
+    </div>
+
+    <div fxFlex='50' class="col-md-5">
+        <h2> router outlet</h2>
+    <router-outlet></router-outlet>
+    </div>
+    
+</div>
+
+<!-- 
 <div class="row">
   <div class="col-md-5">
       <app-user-list></app-user-list>
-    <!-- <rb-recipe-list></rb-recipe-list> -->
     
   </div>
   <div class="col-md-7">
+    <h2> router outlet</h2>
     <router-outlet></router-outlet>
   </div>
-</div>
+</div> -->

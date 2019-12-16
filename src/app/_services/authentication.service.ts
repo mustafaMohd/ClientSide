@@ -56,7 +56,6 @@ export class AuthenticationService {
                     localStorage.setItem('timer', JSON.stringify(time_to_login));
                     this.currentUserSubject.next(data.user);
 
-                    this.alertService.success(" Successfully registered")
                 }
 
                 return data;
@@ -90,8 +89,6 @@ export class AuthenticationService {
                     const time_to_login = Date.now() + 604800000; 
                     localStorage.setItem('timer', JSON.stringify(time_to_login));
                     this.currentUserSubject.next(data.user);
-
-                    this.alertService.success(" Successfully updated")
                 }
 
                 return data;
@@ -123,8 +120,6 @@ export class AuthenticationService {
                     const time_to_login = Date.now() + 604800000; 
                     localStorage.setItem('timer', JSON.stringify(time_to_login));
                     this.currentUserSubject.next(data.user);
-
-                    this.alertService.success(" Successfully Password changed")
                 }
 
                 return data;
@@ -134,6 +129,40 @@ export class AuthenticationService {
 
 
     }
+    
+    forgotPassword(email: string){
+    
+        return this.http.post<any>(`${this.apiUrl}/auth/forgotPassword`, { email })
+            .pipe(map(data => {
+
+                return data;
+            })
+            );
+ 
+
+
+    }
+
+
+    resetPassword(token: string,password:string){
+    
+        return this.http.post<any>(`${this.apiUrl}/auth/resetPassword`, { token,password })
+            .pipe(map(data => {
+
+                if (data ) {
+                    // store user details and jwt token in local storage to keep user logged in between page refreshes
+                    
+                    
+                }
+
+                return data;
+            })
+            );
+ 
+
+
+    }
+
 
     getById(id: number) {
                 return this.http.get(`${this.apiUrl}/${id}`);

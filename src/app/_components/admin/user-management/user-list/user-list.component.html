@@ -1,21 +1,7 @@
-<p>
-  user-list works!
-</p>
-<div class="row">
-  <div class="col-xs-12">
-    <a class="btn btn-success" [routerLink]="['new']">New User</a>
-  </div>
-</div>
-<div class="row">
-  <div class="col-xs-12">
-    <ul class="list-group">
-      
-    <app-user *ngFor="let user of users; let i = index" [user]="user" [userId]="i">
-      
-    </app-user>
-
-      <!-- <rb-recipe-item *ngFor="let recipe of recipes; let i = index" [recipe]="recipe" [recipeId]="i"></rb-recipe-item> -->
-    </ul>
-  </div>
-</div>
-
+<mat-nav-list>     
+    <app-user mat-list-item *ngFor="let user of users; let i = index" [user]="user" [userId]="i">
+          </app-user>
+        </mat-nav-list>
+<!-- <mat-nav-list>
+    <a mat-list-item href="..." *ngFor="let link of links"> {{ link }} </a>
+ </mat-nav-list> -->

@@ -77,12 +77,12 @@ export class ChangePasswordComponent implements OnInit,OnDestroy {
         .pipe(first())
         .subscribe(
             data => {
-                this.alertService.success('Password changed successfully', true);
+                this.alertService.success(`${data.user.fullname} ! password changed successfully `, true);
                 setTimeout(()=>{
                     this.alertService.clear();            
                     
-                  },5000);
-                this.router.navigate(['/']);
+                  },35000);
+                this.router.navigate(['/auth/profile']);
             },
             error => {
                 this.alertService.error(error);
@@ -90,7 +90,7 @@ export class ChangePasswordComponent implements OnInit,OnDestroy {
                 setTimeout(()=>{
                     // this.alertService.clear();            
                     
-                  },15000);
+                  },30000);
             });
 }
 
