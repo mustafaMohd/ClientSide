@@ -14,11 +14,13 @@ const appRoutes: Routes = [
 
   {
     path: 'auth',
-    loadChildren: './_components/auth/auth.module#AuthModule'
+   // loadChildren: './_components/auth/auth.module#AuthModule'
+   loadChildren:  () => import('./_components/auth/auth.module').then(m => m.AuthModule)
   },
   {
     path: 'admin',
-    loadChildren: './_components/admin/admin.module#AdminModule'
+    loadChildren:  () => import('./_components/admin/admin.module').then(m => m.AdminModule)
+//s    loadChildren: './_components/admin/admin.module#AdminModule'
   },
   // app/_components/auth/auth.module#AuthModule
 
