@@ -20,6 +20,7 @@ export class ChangePasswordComponent implements OnInit,OnDestroy {
   loading = false;
   submitted = false;
   error = '';  
+  hide= false;
   constructor(private formBuilder: FormBuilder,
     private router: Router,
     private authenticationService: AuthenticationService,

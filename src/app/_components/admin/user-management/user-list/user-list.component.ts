@@ -25,7 +25,7 @@ export class UserListComponent implements OnInit {
   public totalUsers: number;
   private _currentPage: number=1;
  private _currentSearchValue: string = '';
-  private _pageSize: number=10;
+  public _pageSize: number=10;
   public loading = false;
   panelOpenState = false;
   pageSizeOptions: number[] = [5, 10, 25, 100];

@@ -14,7 +14,7 @@ export class ForgotPasswordComponent implements OnInit {
   loading = false;
   submitted = false;
   error = '';
-  
+  hide= false;
   
 
   constructor(

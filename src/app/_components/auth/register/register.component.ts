@@ -34,6 +34,7 @@ export class RegisterComponent implements OnInit {
     registerForm: FormGroup;
     loading = false;
     submitted = false;
+    hide= false;
 
     constructor(
         private formBuilder: FormBuilder,
