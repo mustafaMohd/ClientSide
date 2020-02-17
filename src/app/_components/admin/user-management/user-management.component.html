@@ -1,23 +1,83 @@
-<div fxLayout="row" fxLayout.md="row" fxLayout.sm="column" fxLayout.xs="column"  fxLayoutGap="5%" fxLayoutAlign="space-around center">
-    <div  fxFlex='35' class="col-md-5">
-        <app-user-list></app-user-list>
-    </div>
+<div fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="space-around center">
+  <!-- column -->    
+  <div fxFlex.gt-sm="80" fxFlex.gt-xs="80" fxFlex="80">
+    <app-user-list >
 
-    <div fxFlex='50' class="col-md-5">
-        <h2> router outlet</h2>
-    <router-outlet></router-outlet>
-    </div>
-    
+
+    </app-user-list>   
+          
+  </div>
+  <!-- column -->    
 </div>
 
+
+
+
 <!-- 
-<div class="row">
-  <div class="col-md-5">
-      <app-user-list></app-user-list>
-    
+
+<div fxLayout ="column"  fxLayoutGap="5%" fxLayoutAlign="center center">
+
+  <div  class="toolbar">
+    <mat-form-field appearance="outline" class="search">
+      <mat-icon matPrefix>search</mat-icon>
+      <input #in (input)="data.queryBy({search: in.value})" type="text" matInput placeholder="Search">
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="registration">
+      <input (dateChange)="data.queryBy({registration: $event.value})" matInput [matDatepicker]="picker" placeholder="Registration"/>
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
   </div>
-  <div class="col-md-7">
-    <h2> router outlet</h2>
-    <router-outlet></router-outlet>
-  </div>
-</div> -->
+<table mat-table [dataSource]="dataSource" matSort (matSortChange)="customSort($event)" >
+  <ng-container matColumnDef="fullname">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Full Name </th>
+    <td mat-cell *matCellDef="let element"> {{element.fullname}} </td>
+  </ng-container>
+  <ng-container matColumnDef="email">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Email </th>
+    <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+  </ng-container>
+ 
+  <ng-container matColumnDef="createdAt">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Date of Membership </th>
+    <td mat-cell *matCellDef="let element"> {{element.createdAt | date}} </td>
+  </ng-container>
+  
+  <ng-container matColumnDef="details">
+    <th mat-header-cell *matHeaderCellDef> Details </th>
+    <td mat-cell *matCellDef="let element">
+      <button mat-icon-button color="primary" (click)="redirectToDetails(element.id)">
+          <mat-icon class="mat-18">reorder</mat-icon>
+      </button>
+    </td>
+  </ng-container>
+ 
+  <ng-container matColumnDef="update">
+      <th mat-header-cell *matHeaderCellDef> Update </th>
+      <td mat-cell *matCellDef="let element">
+        <button mat-icon-button color="accent" (click)="redirectToUpdate(element.id)">
+            <mat-icon class="mat-18">system_update</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+ 
+    <ng-container matColumnDef="delete">
+        <th mat-header-cell *matHeaderCellDef> Delete </th>
+        <td mat-cell *matCellDef="let element">
+          <button mat-icon-button color="warn" (click)="redirectToDelete(element.id)">
+              <mat-icon class="mat-18">delete</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+ 
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+<mat-paginator *ngIf="dataSource.page$ | async as page"
+  [length]="page.totalElements" [pageSize]="page.size"
+  [pageIndex]="page.number" [hidePageSize]="true" 
+  (page)="dataSource.fetch($event.pageIndex)">
+</mat-paginator>
+
+</div>
+ -->

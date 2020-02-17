@@ -7,7 +7,8 @@ import { UserListComponent } from './user-management/user-list/user-list.compone
 import { UserComponent } from './user-management/user-list/user/user.component';
 import { AuthenticationService } from 'src/app/_services';
 import { AdminUserService } from './../../_services/adminServices/adminUser.service';
- 
+// import { SearchAndPaginationModule } from '../seachAndPagination/SearchAndPagination.module';
+
  
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { AdminUserService } from './../../_services/adminServices/adminUser.serv
   imports: [
   CommonModule,
     SharedModule,
+    //SearchAndPaginationModule,
     
 //  FormsModule, ReactiveFormsModule ,
     AdminRoutingModule,

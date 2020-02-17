@@ -20,7 +20,7 @@ export class LoginComponent implements OnInit {
     loading = false;
     submitted = false;
     returnUrl: string;
-    error = '';
+    // error = '';
 
 
     constructor(

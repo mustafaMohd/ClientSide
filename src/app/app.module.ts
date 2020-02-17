@@ -37,6 +37,7 @@ import { NavbarComponent } from './_components/navbarComponent/navbar.component'
 import { SharedModule } from './_components/shared/SharedModule.module';
 import { AuthModule } from './_components/auth/auth.module';
 import { AdminModule } from './_components/admin/admin.module';
+import { SpinnerComponent } from './_components/shared/spinner.component';
 // import { UserListComponent } from './_components/admin/user-management/user-list/user-list.component';
 // import { ForgotPasswordComponent } from './_components/auth/forgot-password/forgot-password.component';
 @NgModule({
@@ -45,12 +46,12 @@ import { AdminModule } from './_components/admin/admin.module';
         // FormsModule,
         // ReactiveFormsModule,
         HttpClientModule,
-        
         AuthModule,
         AdminModule,
 
         AppRoutingModule,
         SharedModule,
+        
        
         
         BrowserAnimationsModule,
@@ -66,17 +67,7 @@ import { AdminModule } from './_components/admin/admin.module';
         AlertComponent,
        
         NavbarComponent,
-       
-        
-       
-       
-       
-        // ForgotPasswordComponent,
-       
-       
-        
-       
-     
+        SpinnerComponent
 
     ],
     providers: [

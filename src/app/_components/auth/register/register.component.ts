@@ -98,6 +98,8 @@ export class RegisterComponent implements OnInit {
             .pipe(first())
             .subscribe(
                 data => {
+                    this.loading = false;
+                    
                     this.alertService.success(`wellcome ! ${data.user.fullname}`, true);
                     setTimeout(()=>{
                         this.alertService.clear();            

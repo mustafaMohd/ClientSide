@@ -1,9 +1,9 @@
 export class User {
    
-    _id: number;
-   email:string;
-    method: string;
+    id: number;
     fullname:string;
+    email:string;
+    method: string;
     createdAt: Date;
     roles: string[];
    
