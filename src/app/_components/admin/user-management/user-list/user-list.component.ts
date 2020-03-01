@@ -23,19 +23,17 @@ export class UserListComponent implements OnInit {
   
   public users: User[];
   public totalUsers: number;
-  private _currentPage: number=1;
+  private _currentPage: number;
  private _currentSearchValue: string = '';
-  public _pageSize: number=10;
+  public _pageSize: number=15;;
   public loading = false;
   panelOpenState = false;
-  pageSizeOptions: number[] = [5, 10, 25, 100];
   columnsToDisplay = ['fullname','email', 'method','Action'];
   expandedElement: User | null;
   // MatPaginator Output
   // pageEvent: PageEvent;
 
   
-
   // usersChanged = new EventEmitter<User[]>();
   
   

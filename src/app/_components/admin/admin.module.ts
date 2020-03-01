@@ -7,6 +7,8 @@ import { UserListComponent } from './user-management/user-list/user-list.compone
 import { UserComponent } from './user-management/user-list/user/user.component';
 import { AuthenticationService } from 'src/app/_services';
 import { AdminUserService } from './../../_services/adminServices/adminUser.service';
+import { CreateUserComponent } from './user-management/create/create.user.component';
+import { EditUserComponent } from './user-management/edit/edit.user.component';
 // import { SearchAndPaginationModule } from '../seachAndPagination/SearchAndPagination.module';
 
  
@@ -15,7 +17,8 @@ import { AdminUserService } from './../../_services/adminServices/adminUser.serv
     UserManagementComponent,
     UserListComponent,
     UserComponent,
-      
+    CreateUserComponent,
+    EditUserComponent,
   ],
   imports: [
   CommonModule,

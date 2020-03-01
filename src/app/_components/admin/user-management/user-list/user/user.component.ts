@@ -9,6 +9,7 @@ import { User } from 'src/app/_models';
 export class UserComponent implements OnInit {
   @Input() user: User;
   @Input() userId: number;
+  
   constructor() { }
 
   ngOnInit() {

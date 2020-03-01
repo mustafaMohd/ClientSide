@@ -1,0 +1,59 @@
+
+<!-- <p-dialog header=" Details"  [focusOnShow]="false" [responsive]="true" showEffect="fade" [modal]="true"  [style]="{width: '300px'}"> -->
+  <p-dialog *ngIf="user" header=" Update" [(visible)]="displayEditDialog"  
+  (onHide)="onClose()" [focusOnShow]="false" [dismissableMask]="true"
+   [responsive]="true" showEffect="fade" [modal]="true" 
+    [style]="{width: '300px'}">
+
+    
+  <mat-card class="login-matcard">
+   
+    <mat-progress-bar mode="query" *ngIf="loading"></mat-progress-bar>
+
+    <p class="title-center">Update Profile</p> 
+    
+    <mat-divider></mat-divider>
+    
+    <form [formGroup]="updateForm" (ngSubmit)="onSubmit()">
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>fullname</mat-label>
+        <input matInput placeholder=" Full Name" [formControl]="fullname" required>
+        <mat-error *ngIf="fullname.hasError('required')"> full name is required</mat-error>
+        <mat-error *ngIf="fullname.hasError('minlength') && !fullname.hasError('required')">
+          fullname Must be at least 6 letters</mat-error>
+        <mat-error *ngIf="fullname.hasError('maxlength')">
+          fullname with more than 40 characters.
+        </mat-error>
+      </mat-form-field>
+
+      
+      
+      <mat-form-field appearance="outline" class="full-width">
+          <mat-label>email</mat-label>
+        <input matInput placeholder="Enter your email" [formControl]="email" required>
+        <mat-error *ngIf="email.hasError('required')"> Email is Required</mat-error>
+        <mat-error *ngIf="!email.hasError('required') && email.hasError('email')"> A Valid Email is Required</mat-error>
+
+      </mat-form-field>
+
+    <br>
+    
+      <div class="example-button-row">
+        <button class="full-width" type="submit" mat-raised-button color="accent"
+          [disabled]="loading">Update</button>
+      </div>
+      <br>
+      <br>
+      <mat-divider></mat-divider>
+      
+<br>
+
+<a mat-button style='float: right;' color="primary" routerLink="/auth/profile"> back to Profile</a>
+      
+
+    
+    </form>
+  </mat-card>
+
+</p-dialog>

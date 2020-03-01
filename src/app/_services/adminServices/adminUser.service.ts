@@ -4,7 +4,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { User } from '../../_models';
 import { map, delay } from 'rxjs/operators';
 import { AlertService } from '../alert.service';
-
+import { Subject } from 'rxjs';
 
 export interface UserQuery {
     search: string;
@@ -15,8 +15,7 @@ export interface UserQuery {
 @Injectable({ providedIn: 'root' })
 export class AdminUserService {
     apiUrl: String = 'https://localhost:3000/api/admin';
-
-
+  
 
     constructor(private alertService: AlertService, private http: HttpClient) { }
 
@@ -39,7 +38,7 @@ export class AdminUserService {
             .set('pageSize', pageSize)
             
             .set('filter', filter);
-        return this.http.get<any>(`${this.apiUrl}/users`, { params })
+        return this.http.get<{userlist:User[],count:number}>(`${this.apiUrl}/users`, { params })
             .pipe(map(data => {
                 // login successful if there's a jwt token in the response http://localhost:3000
                 if (data) {
@@ -52,8 +51,14 @@ export class AdminUserService {
             }));
     }
 
-    register(user: User) {
-        return this.http.post(`${this.apiUrl}/register`, user);
+
+
+
+    
+    create(fullname:string,email: string, password: string) {
+        
+        
+        return this.http.post<any>(`${this.apiUrl}/users`,{ fullname,email, password });
     }
     // getById(id: number) {
     //     return this.http.get(`${this.apiUrl}/users/${id}`);
@@ -61,8 +66,8 @@ export class AdminUserService {
 
 
 
-    update(user: User) {
-        return this.http.put(`${this.apiUrl}/users/${user.id}`, user);
+    update(userId:number, fullname:string,email:string) {
+        return this.http.put<any>(`${this.apiUrl}/users/${userId}`, {fullname,email});
     }
 
     delete(id: number) {

@@ -1,5 +1,5 @@
-<div fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="space-around center">
-  <!-- column -->    
+ <!-- <div fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="space-around center">
+  column    
   <div fxFlex.gt-sm="80" fxFlex.gt-xs="80" fxFlex="80">
     <app-user-list >
 
@@ -7,8 +7,174 @@
     </app-user-list>   
           
   </div>
-  <!-- column -->    
+  column    
+</div> -->
+<!-- <form (submit)="filterList(search.value)">
+   <div class="ui-g-12 ui-md-4">
+    <div class="ui-inputgroup">
+        <input type="text" #search pInputText placeholder="Keyword">   
+        <button pButton *ngIf="search.value" icon="pi pi-times" (click)="search.value=''"></button>
+        
+        <button pButton type="submit" icon="pi pi-refresh"  [disabled]="loading"></button>      
+    </div>
 </div>
+   
+   <mat-form-field  appearance="outline" class="full-width">
+    <input matInput #search   placeholder="Search by full name" >
+    <button mat-button *ngIf="search.value" matSuffix mat-icon-button aria-label="Search" (click)="search.value=''">
+      <mat-icon>close</mat-icon>
+    </button>
+  </mat-form-field> &nbsp;&nbsp;&nbsp;&nbsp;
+  <button color="primary"  type="submit" mat-raised-button color="primary"
+          [disabled]="loading">Search</button>
+</form>
+<br> -->
+
+<mat-progress-bar mode="query" *ngIf="loading"></mat-progress-bar>
+<p-table [columns]="cols" [value]="users" selectionMode="multiple" 
+[(selection)]="selectedUsers" 
+(onRowSelect)="onRowSelect($event)" >
+ <ng-template pTemplate="caption">
+      <form (submit)="filterList(search.value)">
+       <div style="text-align: right" >
+     <input type="text"  #search pInputText placeholder="search by Name">   
+  <button pButton *ngIf="search.value" icon="pi pi-times" (click)="search.value=''"></button>
+ <button pButton type="submit" icon="pi pi-search"  [disabled]="loading"></button>      
+        
+    </div>
+  </form>
+  <div style="text-align:left">
+    <button type="button" pButton icon="pi pi-plus" (click)="showDialogToAdd()" label="Add"></button>
+</div>
+  </ng-template>
+  <ng-template pTemplate="header" let-columns>
+      <tr>
+        <th style="width: 3em">
+          <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+      </th>
+          <th *ngFor="let col of columns" >
+              {{col.header}}
+              
+          </th>
+          <th>Actions</th>
+      </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-rowData let-columns="columns">
+      <tr [pSelectableRow]="rowData">
+        <td>
+          <p-tableCheckbox [value]="rowData"></p-tableCheckbox>
+      </td>  
+        <td *ngFor="let col of columns">
+              {{rowData[col.field]}}
+          </td>
+          <td>
+            
+            <div class="ui-inputgroup">
+              <button pButton type="button" icon="pi pi-pencil" (click)="showDialogToEdit(rowData)"class="ui-button-success"></button>    
+              
+              <button pButton type="button" icon="pi pi-trash" class="ui-button-danger"></button>
+              
+    
+          </div>
+        </td> 
+      </tr>
+  </ng-template>
+  <ng-template pTemplate="summary" let-rowData>
+      <div style="text-align:left">
+          <button type="button" pButton icon="pi pi-plus" (click)="showDialogToAdd()"
+           label="Add"></button>
+      </div>
+  </ng-template>    
+  
+
+</p-table>
+  <mat-paginator [length]="totalUsers"
+  [pageSize]="_pageSize"
+ 
+  [showFirstLastButtons]="true"
+  (page)="goToPage($event)" 
+  [pageIndex]="0"
+  *ngIf="totalUsers > 0">
+</mat-paginator>
+
+<create-user     (displayNewDialogChange)="onDialogClose($event)"
+  [displayNewDialog]="displayNewDialog"></create-user> 
+  
+  <edit-user    [userSubject]="userSubject"   (displayEditDialogChange)="onDialogClose($event)"
+  [displayEditDialog]="displayEditDialog"></edit-user> 
+ 
+ 
+
+  <p-table [columns]="cols" [value]="users" [(selection)]="selectedUsers" >
+    <ng-template pTemplate="header" let-columns>
+        <tr>
+            <th style="width: 3em">
+                <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+            </th>
+            <th *ngFor="let col of columns">
+                {{col.header}}
+            </th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-rowData let-columns="columns">
+        <tr [pSelectableRow]="rowData">
+            <td>
+                <p-tableCheckbox [value]="rowData"></p-tableCheckbox>
+            </td>
+            <td *ngFor="let col of columns">
+                {{rowData[col.field]}}
+            </td>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="summary">
+        <ul>
+            <li *ngFor="let user of selectedUsers" style="text-align: left">
+                {{user._id + ' - ' + user.fullname + ' - ' + user.email + ' - ' + user.method}}
+            </li>
+        </ul>
+    </ng-template>
+</p-table>
+  
+ 
+
+<!-- <p-dialog header=" Details" [(visible)]="displayDialog" [focusOnShow]="false" [responsive]="true" showEffect="fade" [modal]="true"  [style]="{width: '300px'}">
+  [user]="<create-user     (displayNewDialogChange)="onDialogClose($event)"
+ [displayNewDialog]="displayNewDialog"></create-user> 
+" [userId]="i"
+  
+  <div class="ui-g ui-fluid" *ngIf="user">
+      <div class="ui-g-12">
+          <div class="ui-g-4">
+              <label for="fullname">Full Name</label>
+          </div>
+          <div class="ui-g-8">
+              <input pInputText id="fullname" [(ngModel)]="user.fullname" autofocus />
+          </div>
+      </div>
+      <div class="ui-g-12">
+          <div class="ui-g-4">
+              <label for="email">Email</label>
+          </div>
+          <div class="ui-g-8">
+              <input pInputText id="email" [(ngModel)]="user.email" />
+          </div>
+      </div>
+      <div class="ui-g-12">
+          <div class="ui-g-4">
+              <label for="method">Registered via method </label>
+          </div>
+          <div class="ui-g-8">
+              <input pInputText id="method" [(ngModel)]="user.method" />
+          </div>
+      </div>
+  </div>
+  <p-footer>
+      <div class="ui-dialog-buttonpane ui-helper-clearfix">
+          <button type="button" pButton icon="pi pi-close" (click)="delete()" label="Delete"></button>
+          <button type="button" pButton icon="pi pi-check" (click)="save()" label="Save"></button>
+      </div>
+  </p-footer>
+</p-dialog> -->
 
 
 
@@ -81,3 +247,4 @@
 
 </div>
  -->
+ 
