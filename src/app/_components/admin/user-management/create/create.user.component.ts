@@ -99,12 +99,12 @@ export class CreateUserComponent implements OnInit,OnDestroy {
         this.adminUserService.create(this.fullname.value, this.email.value, this.password.value)
             .pipe(first())
             .subscribe(
-                data => {
+                user => {
                     this.createForm.reset();
                     
                     this.loading = false;
                     
-                    this.alertService.success(`  ${data.user.fullname} ! Added`, true);
+                    this.alertService.success(`  ${user.fullname} ! Added`, true);
                     setTimeout(()=>{
                         this.alertService.clear();            
                         

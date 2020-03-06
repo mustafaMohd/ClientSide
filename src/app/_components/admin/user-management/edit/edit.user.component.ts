@@ -12,7 +12,7 @@ import { AdminUserService } from '../../../../_services/adminServices/adminUser.
   templateUrl: './edit.user.component.html',
   styleUrls: ['./edit.user.component.css']
 })
-export class EditUserComponent implements OnChanges {
+export class EditUserComponent implements OnChanges,OnDestroy {
    user: User;
   @Input()
   userSubject:Subject<User>;
@@ -84,16 +84,19 @@ export class EditUserComponent implements OnChanges {
     this.loading = true;
 
 
-    this.adminUserService.update(this.user.id, this.fullname.value, this.email.value)
+    this.adminUserService.update(this.user._id, this.fullname.value, this.email.value)
       .pipe(first())
       .subscribe(
         user => {
-          this.alertService.success('Updated successfully', true);
+          this.loading = false;
+         
+          this.alertService.success(` ${user.fullname} Updated successfully`, true);
+         
           setTimeout(() => {
             this.alertService.clear();
 
           }, 3000);
-          this.router.navigate(['/auth/profile']);
+          // this.router.navigate(['/admin/users']);
         },
         error => {
           this.alertService.error(error);

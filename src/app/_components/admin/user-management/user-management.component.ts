@@ -35,6 +35,7 @@ export class UserManagementComponent implements OnInit {
   newUser: boolean;
   displayNewDialog: boolean;
   displayEditDialog: boolean;
+  displayChangePasswordDialog: boolean;
   
   // Users: User[];
 
@@ -118,22 +119,34 @@ public filterList(searchParam: string): void {
   showDialogToAdd() {
     // this.newUser = true;
     // this.user = new User;
-    this.displayNewDialog = true;
   this.displayEditDialog= false;
+  this.displayChangePasswordDialog= false;
+  this.displayNewDialog = true;
+
 }
 showDialogToEdit(u) {
   // this.newUser = true;
   // this.user = new User;
 this.userSubject.next(u);
-  this.displayEditDialog= true;
   this.displayNewDialog = false;
+  this.displayChangePasswordDialog= false;
+  this.displayEditDialog= true;
+
+}
+showDialogToChangePassword(u) {
+  // this.newUser = true;
+  // this.user = new User;
+this.userSubject.next(u);
+
+this.displayEditDialog= false;
+  this.displayNewDialog = false;
+  this.displayChangePasswordDialog= true;
 
 }
 
 
-
 onDialogClose(event) {
-  
+  this.displayEditDialog= event;
   this.displayNewDialog = event;
   this.displayEditDialog = event;
 

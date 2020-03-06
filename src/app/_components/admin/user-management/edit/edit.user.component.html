@@ -1,18 +1,13 @@
 
 <!-- <p-dialog header=" Details"  [focusOnShow]="false" [responsive]="true" showEffect="fade" [modal]="true"  [style]="{width: '300px'}"> -->
-  <p-dialog *ngIf="user" header=" Update" [(visible)]="displayEditDialog"  
+  <p-dialog header=" Update" [(visible)]="displayEditDialog"  
   (onHide)="onClose()" [focusOnShow]="false" [dismissableMask]="true"
    [responsive]="true" showEffect="fade" [modal]="true" 
     [style]="{width: '300px'}">
 
-    
-  <mat-card class="login-matcard">
    
     <mat-progress-bar mode="query" *ngIf="loading"></mat-progress-bar>
 
-    <p class="title-center">Update Profile</p> 
-    
-    <mat-divider></mat-divider>
     
     <form [formGroup]="updateForm" (ngSubmit)="onSubmit()">
 
@@ -43,17 +38,8 @@
         <button class="full-width" type="submit" mat-raised-button color="accent"
           [disabled]="loading">Update</button>
       </div>
-      <br>
-      <br>
-      <mat-divider></mat-divider>
       
-<br>
-
-<a mat-button style='float: right;' color="primary" routerLink="/auth/profile"> back to Profile</a>
-      
-
     
     </form>
-  </mat-card>
-
+  
 </p-dialog>

@@ -66,10 +66,13 @@ export class AdminUserService {
 
 
 
-    update(userId:number, fullname:string,email:string) {
+    update(userId:string, fullname:string,email:string) {
         return this.http.put<any>(`${this.apiUrl}/users/${userId}`, {fullname,email});
     }
 
+    changePassword(userId:string, newPassword:string) {
+        return this.http.put<any>(`${this.apiUrl}/users/changePassword/${userId}`, {newPassword});
+    }
     delete(id: number) {
         return this.http.delete(`${this.apiUrl}/users/${id}`);
     }

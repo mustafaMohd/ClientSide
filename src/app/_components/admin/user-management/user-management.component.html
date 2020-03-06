@@ -1,34 +1,4 @@
- <!-- <div fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="space-around center">
-  column    
-  <div fxFlex.gt-sm="80" fxFlex.gt-xs="80" fxFlex="80">
-    <app-user-list >
 
-
-    </app-user-list>   
-          
-  </div>
-  column    
-</div> -->
-<!-- <form (submit)="filterList(search.value)">
-   <div class="ui-g-12 ui-md-4">
-    <div class="ui-inputgroup">
-        <input type="text" #search pInputText placeholder="Keyword">   
-        <button pButton *ngIf="search.value" icon="pi pi-times" (click)="search.value=''"></button>
-        
-        <button pButton type="submit" icon="pi pi-refresh"  [disabled]="loading"></button>      
-    </div>
-</div>
-   
-   <mat-form-field  appearance="outline" class="full-width">
-    <input matInput #search   placeholder="Search by full name" >
-    <button mat-button *ngIf="search.value" matSuffix mat-icon-button aria-label="Search" (click)="search.value=''">
-      <mat-icon>close</mat-icon>
-    </button>
-  </mat-form-field> &nbsp;&nbsp;&nbsp;&nbsp;
-  <button color="primary"  type="submit" mat-raised-button color="primary"
-          [disabled]="loading">Search</button>
-</form>
-<br> -->
 
 <mat-progress-bar mode="query" *ngIf="loading"></mat-progress-bar>
 <p-table [columns]="cols" [value]="users" selectionMode="multiple" 
@@ -44,7 +14,8 @@
     </div>
   </form>
   <div style="text-align:left">
-    <button type="button" pButton icon="pi pi-plus" (click)="showDialogToAdd()" label="Add"></button>
+    <button type="button" pButton label="Add New User"
+     icon="pi pi-user-plus" (click)="showDialogToAdd()" label="Add"></button>
 </div>
   </ng-template>
   <ng-template pTemplate="header" let-columns>
@@ -70,11 +41,12 @@
           <td>
             
             <div class="ui-inputgroup">
-              <button pButton type="button" icon="pi pi-pencil" (click)="showDialogToEdit(rowData)"class="ui-button-success"></button>    
-              
-              <button pButton type="button" icon="pi pi-trash" class="ui-button-danger"></button>
-              
-    
+              <button pButton type="button" icon="pi pi-user-edit" label="Edit" (click)="showDialogToEdit(rowData)"class="ui-button-success"></button>    
+              <button pButton type="button" icon="pi pi-trash" label="Delete" class="ui-button-danger"></button>
+             <div *ngIf="rowData.method==='local'">
+              <button pButton type="button" icon="pi pi-cog" label="Password" (click)="showDialogToChangePassword(rowData)" ></button>
+             
+             </div>
           </div>
         </td> 
       </tr>
@@ -100,11 +72,17 @@
 <create-user     (displayNewDialogChange)="onDialogClose($event)"
   [displayNewDialog]="displayNewDialog"></create-user> 
   
+<div>
   <edit-user    [userSubject]="userSubject"   (displayEditDialogChange)="onDialogClose($event)"
-  [displayEditDialog]="displayEditDialog"></edit-user> 
- 
- 
+    [displayEditDialog]="displayEditDialog"></edit-user> 
 
+   
+    <change-password    [userSubject]="userSubject"   (displayChangePasswordDialogChange)="onDialogClose($event)"
+    [displayChangePasswordDialog]="displayChangePasswordDialog"></change-password> 
+  
+</div>
+   
+<!--   
   <p-table [columns]="cols" [value]="users" [(selection)]="selectedUsers" >
     <ng-template pTemplate="header" let-columns>
         <tr>
@@ -129,11 +107,11 @@
     <ng-template pTemplate="summary">
         <ul>
             <li *ngFor="let user of selectedUsers" style="text-align: left">
-                {{user._id + ' - ' + user.fullname + ' - ' + user.email + ' - ' + user.method}}
+                {{user.id + ' - ' + user.fullname + ' - ' + user.email + ' - ' + user.method}}
             </li>
         </ul>
     </ng-template>
-</p-table>
+</p-table> -->
   
  
 

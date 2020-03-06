@@ -9,6 +9,7 @@ import { AuthenticationService } from 'src/app/_services';
 import { AdminUserService } from './../../_services/adminServices/adminUser.service';
 import { CreateUserComponent } from './user-management/create/create.user.component';
 import { EditUserComponent } from './user-management/edit/edit.user.component';
+import { ChangePasswordComponent } from './user-management/change-password/change-password.component';
 // import { SearchAndPaginationModule } from '../seachAndPagination/SearchAndPagination.module';
 
  
@@ -19,6 +20,8 @@ import { EditUserComponent } from './user-management/edit/edit.user.component';
     UserComponent,
     CreateUserComponent,
     EditUserComponent,
+    ChangePasswordComponent
+
   ],
   imports: [
   CommonModule,
